@@ -1,0 +1,37 @@
+.navbar {
+    background-color: black;
+}
+
+.link {
+    color: white;
+}
+
+.link:hover {
+    color:white;
+}
+
+.search-input {
+    border: none;
+    background-color: rgb(43, 43, 43);
+}
+
+.search-input::placeholder {
+    color: white;
+    opacity: 1; /* Firefox에서의 색상 변경을 위해 필요 */
+}
+
+.search-icon-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid red;
+    border-radius: 5px;
+    padding: 10px;
+    color: red;
+}
+
+.search-icon-box:hover {
+    background-color: red;
+    color: white;
+}
+
