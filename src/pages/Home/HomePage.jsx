@@ -1,8 +1,8 @@
 import React from 'react'
 import Banner from './components/Banner/Banner'
-import PopularMovieSlide from './components/PopularMovieSlide/PopularMovieSlide'
-import { Alert, Spinner } from 'react-bootstrap';
-import { usePopularMoviesQuery } from '../../hooks/usePopularMovies';
+import PopularMovieSlider from './components/PopularMovieSlider/PopularMovieSlider'
+import TopRatedMovieSlider from './components/TopRatedMovieSlider/TopRatedMovieSlider'
+import UpcomingMovieSlider from './components/UpcomingMovieSlider/UpcomingMovieSlider'
 import './HomePage.style.css';
 /*
 1. 배너 => popular영화 들고와서 첫번째 아이템 보여주기(api호출)
@@ -11,30 +11,13 @@ import './HomePage.style.css';
 4. upcoming movie
 */
 const HomePage = () => {
-  const {isLoading, isError, error} = usePopularMoviesQuery();
-  if(isLoading) {
-    return (
-      <div className="loading-spinner">
-        <Spinner className="home-loading-spinner" animation="border" variant="danger" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </Spinner>
-      </div>
-    )
-  }
 
-  if(isError) {
-    return (
-      <div className="error-alert">
-        <Alert className="error-alert" variant="danger">
-          {error.message}
-        </Alert>
-      </div>
-    )
-  }
   return (
     <div>
       <Banner />
-      <PopularMovieSlide />
+      <PopularMovieSlider />
+      <TopRatedMovieSlider />
+      <UpcomingMovieSlider />
     </div>
   )
 }

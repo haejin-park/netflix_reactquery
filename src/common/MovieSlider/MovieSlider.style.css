@@ -1,0 +1,28 @@
+.carousel-container {
+    overflow: hidden; /* 내용이 넘치면 잘리게 */
+    height: 562px;
+}
+
+@media(max-width:400px) {
+    .carousel-container {
+        height: 300px;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.movies {
+    color: white;
+    position: relative;
+    top:5px;
+}
+
+.movie-slider {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.slider {
+    padding: 0 50px;
+}

@@ -2,11 +2,6 @@
     background-color: black;
 }
 
-.loading-spinner, .error-alert {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
+
 
 

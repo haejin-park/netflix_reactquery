@@ -1,7 +1,7 @@
 /*마우스 올리면 0.5초동안 점진적으로 변화할 수 있게*/
 .movie-card {
-    height:442px;
-    width:265px;
+    height:450px;
+    width:300px;
     background-size: cover; 
     background-position: center;
     cursor:pointer;
@@ -27,12 +27,16 @@
 
 /* 카드 커지게 */
 .movie-card:hover {
-    transform : scale(1.3) translateZ(20px);
+    transform : scale(1.1) translateZ(20px);
     z-index:2;
 }
 
 .movie-title, .movie-info {
     padding: 10px;
+}
+
+.movie-info div{
+    margin:5px;
 }
 
 .average {
