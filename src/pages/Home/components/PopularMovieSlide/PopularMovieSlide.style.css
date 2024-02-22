@@ -1,0 +1,4 @@
+.carousel-container {
+    overflow: hidden; /* 내용이 넘치면 잘리게 */
+    height: 562px;
+}

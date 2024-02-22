@@ -3,7 +3,7 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { usePopularMoviesQuery } from '../../../../hooks/usePopularMovies';
 import MovieCard from '../MovieCard/MovieCard';
-
+import './PopularMovieSlide.style.css';
 /*
 영화 들고오기
 캐루셀 적용하기
@@ -13,7 +13,7 @@ const PopularMovieSlide = () => {
     const responsive = {
       desktop: {
         breakpoint: { max: 3000, min: 1024 },
-        items: 8,
+        items: 6,
       },
       tablet: {
         breakpoint: { max: 1024, min: 464 },
@@ -26,7 +26,6 @@ const PopularMovieSlide = () => {
     };
   return (
     <div>
-      PopularMovie
       <Carousel   
         infinite={true} 
         centerMode={true}
