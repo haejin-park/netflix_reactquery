@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import {Outlet} from "react-router-dom";
 import { Container, Form, Nav, Navbar } from 'react-bootstrap';
-import './AppLayout.style.css';
 import logo from '../logo.png';
 
 
