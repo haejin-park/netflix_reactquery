@@ -1,9 +1,11 @@
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
-import { Container, Form, Nav, Navbar } from 'react-bootstrap';
 import {Outlet} from "react-router-dom";
+import { Container, Form, Nav, Navbar } from 'react-bootstrap';
+import './AppLayout.style.css';
 import logo from '../logo.png';
+
 
 const AppLayout = () => {
   return (
