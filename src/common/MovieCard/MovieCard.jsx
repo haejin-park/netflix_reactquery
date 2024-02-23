@@ -3,8 +3,20 @@ import { Badge } from 'react-bootstrap';
 import './MovieCard.style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faUsersRectangle } from '@fortawesome/free-solid-svg-icons';
+import { useMovieGenreQuery } from '../../hooks/useMovieGenre';
 
 const MovieCard = ({movie}) => {
+  const {data:genresData} = useMovieGenreQuery();
+  console.log("genresData", genresData);
+
+  const showGenre = (genreIdList) => {
+    if(!genreIdList) return [];
+    const genreNameList = genreIdList.map((id) => {
+      const genreObj = genresData.find((genre) => genre.id === id)
+      return genreObj.name
+    });
+    return genreNameList;
+  }
   return (
     <div
     style={{
@@ -19,8 +31,10 @@ const MovieCard = ({movie}) => {
         <div className='movie-info'>
           <h2 className='movie-title'>{movie.title}</h2>
           <div>
-            {movie.genre_ids.map((id, index) => 
-              <Badge key={index} bg="danger">{id}</Badge>
+            {showGenre(movie.genre_ids).map((genreName, index) => 
+              <Badge key={index} bg="danger" className="me-1">
+                {genreName}
+              </Badge>
             )}
           </div>
           <div><FontAwesomeIcon className="average" icon={faStar} />&nbsp;{movie.vote_average}</div>

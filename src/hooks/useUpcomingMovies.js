@@ -9,8 +9,6 @@ export const useUpcomingMoviesQuery = () => {
     return useQuery({
         queryKey:['movie-upcoming'],
         queryFn: fetchUpcomingMovies,
-        select: (data) => {
-            return data.data
-        }
+        select: (data) => data.data,
     })
 }
