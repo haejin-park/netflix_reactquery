@@ -18,8 +18,8 @@ const MovieSlider = ({movieListTitle, movies, responsive}) => {
         setDeviceType("mobile");
       }
     };
+    checkDeviceType();
     window.addEventListener('resize', checkDeviceType);
-
     return () => window.removeEventListener("resize", checkDeviceType);
   }, []);
 
@@ -35,6 +35,7 @@ const MovieSlider = ({movieListTitle, movies, responsive}) => {
           responsive={responsive} //기기별 몇개 보여줄건지
           autoPlay={deviceType !== "mobile" ? true : false}
           transitionDuration={500}
+          deviceType={deviceType}
         >
           {movies?.results.map((movie, index) => (
             <MovieCard movie={movie} key={index}></MovieCard>

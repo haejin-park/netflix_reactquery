@@ -3,7 +3,6 @@ import { usePopularMoviesQuery } from '../../../../hooks/usePopularMovies'
 import "./Banner.style.css";
 const Banner = () => {
   const {data} = usePopularMoviesQuery();
-  console.log("popular data", data);
   return (
     <div style={{
       backgroundImage:
