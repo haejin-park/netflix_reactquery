@@ -52,3 +52,15 @@
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+@media(max-width:600px) {
+
+    .movie-card {
+        height:250px;
+        width:350px;
+        background-size: cover; 
+        background-position: center;
+        cursor:pointer;
+        transition: 0.5s; 
+    }
+}

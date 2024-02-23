@@ -3,14 +3,6 @@
     height: 562px;
 }
 
-@media(max-width:400px) {
-    .carousel-container {
-        height: 300px;
-        display: flex;
-        justify-content: space-between;
-    }
-}
-
 .movies {
     color: white;
     position: relative;
@@ -25,4 +17,34 @@
 
 .slider {
     padding: 0 50px;
+}
+
+
+@media(max-width:600px) {
+
+    .carousel-container {
+        height: 320px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .slider {
+        padding: 0 30px;
+    }
+
+    .movies {
+        color: white;
+        position: relative;
+        top:20px;
+    }
+
+    .react-multi-carousel-dot  {
+        width: 13px;
+    }
+
+    .react-multi-carousel-dot-list  .react-multi-carousel-dot button {
+        width: 9px;
+        height: 9px;
+    }
+
 }
