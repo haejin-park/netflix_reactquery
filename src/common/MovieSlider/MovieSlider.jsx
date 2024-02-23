@@ -6,25 +6,36 @@ import MovieCard from '../MovieCard/MovieCard';
 
 const MovieSlider = ({movieListTitle, movies, responsive}) => {
 
-  let [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 767);
-    };
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
+  let [deviceType, setDeviceType] = useState("");
 
+  useEffect(() => {
+    const checkDeviceType = () => {
+      if(window.innerWidth >=992) {
+        setDeviceType("desktop");
+      } else if(window.innerWidth >=768 && window.innerWidth <=991) {
+        setDeviceType("tablet");
+      } else {
+        setDeviceType("mobile");
+      }
+    };
+    window.addEventListener('resize', checkDeviceType);
+
+    return () => window.removeEventListener("resize", checkDeviceType);
   }, []);
+
   return (
     <div className="slider">
       <div className="movie-slider">
         <h2 className="movie-list-title">{movieListTitle}</h2>
         <Carousel   
-          showDots={isMobile}
+          showDots={deviceType === 'mobile'? true : false}
           infinite={true} 
           itemClass="carousel-item-padding-40-px"
           containerClass="carousel-container"
           responsive={responsive} //기기별 몇개 보여줄건지
+          removeArrowOnDeviceType={"mobile"}
+          autoPlay={deviceType !== "mobile" ? true : false}
+          transitionDuration={500}
         >
           {movies?.results.map((movie, index) => (
             <MovieCard movie={movie} key={index}></MovieCard>
