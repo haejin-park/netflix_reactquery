@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSearchMovieQuery } from '../../hooks/useSearchMovie';
 import { useSearchParams } from 'react-router-dom';
 import { Alert, Col, Container, Row, Spinner } from 'react-bootstrap';
 import MovieCard from '../../common/MovieCard/MovieCard';
+import ReactPaginate from 'react-paginate';
 
 /*
   경로 2가지
@@ -19,9 +20,12 @@ import MovieCard from '../../common/MovieCard/MovieCard';
 
 const MoviePage = () => {
   const [query, setQuery] = useSearchParams();
+  const [page, setPage] = useState(1);
   const keyword = query.get('q');
-  const {data,isLoading, isError, error} = useSearchMovieQuery({keyword});
+  const {data,isLoading, isError, error} = useSearchMovieQuery({keyword, page});
   console.log('data', data);
+  console.log('page', page);
+
 
   if(isLoading) {
     return (
@@ -42,6 +46,14 @@ const MoviePage = () => {
       </div>
     )
   }
+
+
+
+  // Invoke when user click to request another page.
+  const handlePageClick = ({selected}) => {
+    setPage(selected+1);
+  };
+
   return (
     <Container>
       <Row>
@@ -58,6 +70,27 @@ const MoviePage = () => {
           </Row>
         </Col>
       </Row>
+      <ReactPaginate
+        nextLabel="next >"
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={3}
+        marginPagesDisplayed={2}
+        pageCount={data.total_pages} //전체페이지
+        previousLabel="< previous"
+        pageClassName="page-item"
+        pageLinkClassName="page-link"
+        previousClassName="page-item"
+        previousLinkClassName="page-link"
+        nextClassName="page-item"
+        nextLinkClassName="page-link"
+        breakLabel="..."
+        breakClassName="page-item"
+        breakLinkClassName="page-link"
+        containerClassName="pagination"
+        activeClassName="active"
+        renderOnZeroPageCount={null}
+        forcePage={page-1} //내가 선택한 페이지
+      />
     </Container>
   )
 
