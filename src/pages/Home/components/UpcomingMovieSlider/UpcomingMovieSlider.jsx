@@ -31,7 +31,7 @@ const UpcomingMovieSlider = () => {
       )
     }
   return (
-    <MovieSlider title="Upcoming Movies" movies={data} responsive={responsive}/>
+    <MovieSlider movieListTitle="Upcoming Movies" movies={data} responsive={responsive}/>
   )
 }
 

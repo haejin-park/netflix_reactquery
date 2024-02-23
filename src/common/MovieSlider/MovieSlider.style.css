@@ -1,12 +1,12 @@
 .carousel-container {
-    overflow: hidden; /* 내용이 넘치면 잘리게 */
-    height: 562px;
+    overflow: hidden;
+    height: 510px;
 }
 
-.movies {
+.movie-list-title {
     color: white;
     position: relative;
-    top:5px;
+    top:10px;
 }
 
 .movie-slider {
@@ -16,26 +16,16 @@
 }
 
 .slider {
-    padding: 0 50px;
+    padding: 10px 50px;
 }
 
-
-@media(max-width:600px) {
-
+@media(max-width:767px) {
     .carousel-container {
         height: 320px;
-        display: flex;
-        justify-content: space-between;
     }
 
     .slider {
-        padding: 0 30px;
-    }
-
-    .movies {
-        color: white;
-        position: relative;
-        top:20px;
+        padding: 10px 30px;
     }
 
     .react-multi-carousel-dot  {

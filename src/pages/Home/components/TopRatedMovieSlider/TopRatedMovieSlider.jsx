@@ -32,7 +32,7 @@ const TopRatedMovieSlider = () => {
     }
 
   return (
-    <MovieSlider title="Top Rated Movies" movies={data} responsive={responsive}/>
+    <MovieSlider movieListTitle="Top Rated Movies" movies={data} responsive={responsive}/>
   )
 }
 

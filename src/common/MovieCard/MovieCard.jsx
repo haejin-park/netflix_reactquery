@@ -13,11 +13,11 @@ const MovieCard = ({movie}) => {
       `https://media.themoviedb.org/t/p/w533_and_h300_bestv2${movie.poster_path}`+
       ")"
     }}
-    className='movie-card'
+    className='movie-card-image'
     > 
       <div className='overlay'>
-        <h2 className='movie-title'>{movie.title}</h2>
         <div className='movie-info'>
+          <h2 className='movie-title'>{movie.title}</h2>
           <div>
             {movie.genre_ids.map((id, index) => 
               <Badge key={index} bg="danger">{id}</Badge>
