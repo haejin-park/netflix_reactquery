@@ -27,14 +27,14 @@
     transform: translate(0%, 62%);
 }
 
-@media (min-width:768px) and (max-width: 991px) {
+@media (min-width:769px) and (max-width: 991px) {
     .title {
         font-size: 60px;
         transform: translate(0%, 50%); /* 수직 및 수평 가운데 정렬 */
     }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
     .title {
         font-size: 50px;
         transform: translate(0%, 40%); /* 수직 및 수평 가운데 정렬 */

@@ -61,7 +61,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
-@media(max-width:767px) {
+@media(max-width:768px) {
     .movie-card-image {
         height:260px;
     }

@@ -10,9 +10,9 @@ const MovieSlider = ({movieListTitle, movies, responsive}) => {
 
   useEffect(() => {
     const checkDeviceType = () => {
-      if(window.innerWidth >=992) {
+      if(window.innerWidth >=993) {
         setDeviceType("desktop");
-      } else if(window.innerWidth >=768 && window.innerWidth <=991) {
+      } else if(window.innerWidth >=769 && window.innerWidth <=992) {
         setDeviceType("tablet");
       } else {
         setDeviceType("mobile");
@@ -33,7 +33,7 @@ const MovieSlider = ({movieListTitle, movies, responsive}) => {
           itemClass="carousel-item-padding-40-px"
           containerClass="carousel-container"
           responsive={responsive} //기기별 몇개 보여줄건지
-          autoPlay={deviceType !== "mobile" ? true : false}
+          // autoPlay={deviceType !== "mobile" ? true : false}
           transitionDuration={500}
           deviceType={deviceType}
         >

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Badge } from 'react-bootstrap';
-import './MovieCard.style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faUsersRectangle } from '@fortawesome/free-solid-svg-icons';
 import { useMovieGenreQuery } from '../../hooks/useMovieGenre';
+import './MovieCard.style.css';
 
 const MovieCard = ({movie}) => {
   const {data:genresData} = useMovieGenreQuery();
@@ -19,6 +19,7 @@ const MovieCard = ({movie}) => {
     <div
     style={{
       backgroundImage:
+      movie.poster_path && 
       "url("+
       `https://media.themoviedb.org/t/p/w533_and_h300_bestv2${movie.poster_path}`+
       ")"
@@ -46,7 +47,6 @@ const MovieCard = ({movie}) => {
         </div>
       </div>
     </div>
-
   )
 }
 

@@ -28,19 +28,19 @@
 }
 
 
-@media (min-width:992px) and (max-width: 1600px) {
+@media (min-width:993px) and (max-width: 1600px) {
     .banner-text-area {
         width: 50%;
     }
 }
 
-@media (min-width:768px) and (max-width: 991px) {
+@media (min-width:769px) and (max-width: 992px) {
     .banner-text-area {
         width: 60%;
     }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
     .banner-text-area {
         width: 70%;
     }

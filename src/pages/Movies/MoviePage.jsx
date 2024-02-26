@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSearchMovieQuery } from '../../hooks/useSearchMovie';
 import { useSearchParams } from 'react-router-dom';
-import { Alert, Col, Container, Row, Spinner } from 'react-bootstrap';
-import MovieCard from '../../common/MovieCard/MovieCard';
+import { Alert, Spinner, Container, Col, Row } from 'react-bootstrap';
+import MoviePageCard from '../../common/MoviePageCard/MoviePageCard';
+import {FormControl, InputLabel, NativeSelect, Box,  Collapse, Slider} from '@mui/material';
+import './MoviePage.style.css';
 import ReactPaginate from 'react-paginate';
-
+import { ExpandLess, ExpandMore } from '@mui/icons-material';
+import { useMovieGenreQuery } from '../../hooks/useMovieGenre';
 /*
   경로 2가지
   navbar에서 클릭해서 온 경우 => popularMovie보여주기
@@ -21,11 +24,82 @@ import ReactPaginate from 'react-paginate';
 const MoviePage = () => {
   const [query, setQuery] = useSearchParams();
   const [page, setPage] = useState(1);
+  const [openSort, setOpenSort] = useState(true);
+  const [openFilter, setOpenFilter] = useState(true);
+  const optionList = ['None', 'Popularity(Desc)', 'Popularity(Asc)', 'Release Day(Desc)', 
+  'Release Day(Asc)', 'Vote(Desc)', 'Vote(Asc)', 'Revenue(Desc)', 'Revenue(Asc)'];
+  const [selected, setSelected] = useState("");
+  const [sortOption, setSortOption] = useState("");
+  const [year, setYear] = useState([1800, 2200]);
+  const [score, setScore] = useState([0, 10]);
+  const [genreId, setGenreId] = useState();
+  const minDistance = 1;
   const keyword = query.get('q');
-  const {data,isLoading, isError, error} = useSearchMovieQuery({keyword, page});
-  console.log('data', data);
-  console.log('page', page);
+  const {data, isLoading, isError, error} = useSearchMovieQuery({keyword, page, sortOption});
+  let results = data?.results;
+  const [movies, setMovies] = useState([]);
+  const {data:genresData} = useMovieGenreQuery();
 
+  useEffect(() => {
+
+    if(selected){
+      switch(selected) {
+        case 'None': 
+          setSortOption('');
+          break;
+        case 'Popularity(Desc)': 
+          setSortOption('popularity.desc');
+          break;
+        case 'Popularity(Asc)': 
+          setSortOption('popularity.asc');
+          break;
+        case 'Release Day(Desc)': 
+        setSortOption('primary_release_date.desc');
+          break;
+        case 'Release Day(Asc)': 
+        setSortOption('primary_release_date.asc');
+          break;
+        case 'Vote(Desc)': 
+          setSortOption('vote_average.desc');
+          break;
+        case 'Vote(Asc)': 
+          setSortOption('vote_average.asc');
+          break;
+        case 'Revenue(Desc)': 
+          setSortOption('revenue.desc');
+          break;
+        case 'Revenue(Asc)': 
+          setSortOption('revenue.asc');
+          break;
+        default: 
+          return;
+      }
+    }
+  
+
+    if(year && results) {
+      results = results.filter((result) => {
+        let releaseYear = parseInt(result.release_date?.split('-')[0]);
+        return releaseYear >= year[0] && releaseYear <=  year[1];
+      });
+    }
+
+    if(score && results) {
+      results = results.filter((result) => {
+        return result.vote_average >= score[0] && result.vote_average <= score[1];
+      });
+    }
+
+    if(genreId && results) {
+      results = results.filter((result) => {
+        return result.genre_ids.includes(genreId);
+      });
+    }
+
+  /* 상태가 비동기적으로 업데이트 되므로 movies가 업데이트 되는 시점은 useEffect이후이기 때문에 모든 필터링 결과를 반영할 수 있도록 상태를 한번에 업데이트  */
+    setMovies(results)
+
+  }, [selected, score, year, genreId, data?.results]);
 
   if(isLoading) {
     return (
@@ -35,7 +109,7 @@ const MoviePage = () => {
         </Spinner>
       </div>
     )
-  }
+  };
 
   if(isError) {
     return (
@@ -45,51 +119,200 @@ const MoviePage = () => {
         </Alert>
       </div>
     )
-  }
+  };
 
-
-
-  // Invoke when user click to request another page.
   const handlePageClick = ({selected}) => {
     setPage(selected+1);
   };
 
+  const handleSortClick = () => {
+    setOpenSort(!openSort);
+  };
+
+  const handleFilterClick = () => {
+    setOpenFilter(!openFilter);
+  };
+
+  const valuetext = (value) => {
+    return `${value}`;
+  };
+
+const handleYearChange = (event, newValue, activeThumb) => {
+  if (!Array.isArray(newValue)) {
+    return;
+  }
+  if (activeThumb === 0) {
+    setYear([Math.min(newValue[0], year[1] - minDistance), year[1]]);
+  } else {
+    setYear([year[0], Math.max(newValue[1], year[0] + minDistance)]);
+  }
+
+};
+
+const handleScoreChange = (event, newValue, activeThumb) => {
+  if (!Array.isArray(newValue)) {
+    return;
+  }
+
+  if (activeThumb === 0) {
+    setScore([Math.min(newValue[0], score[1] - minDistance), score[1]]);
+  } else {
+    setScore([score[0], Math.max(newValue[1], score[0] + minDistance)]);
+  }
+};
+  
   return (
-    <Container>
+    <Container className="movie-page-container">
       <Row>
-        <Col lg={4} xs={12}>
-          필터
+        <Col lg={4} xs={12}> 
+        <div className="sort-and-filter-section">
+          {/* Sort */}
+          <div
+            className='dropdown-section'
+          >
+            <div className="dropdown-name-section" onClick={handleSortClick}>
+              <div className="dropdown-name">
+                <h4>Sort</h4>
+                <span>{openSort ? <ExpandMore /> : <ExpandLess />}</span>
+              </div>
+            </div>
+            <Collapse className="dropdown-collapse-section" in={openSort} timeout="auto" unmountOnExit>
+              <div className="dropdown-div">
+                <h4>Sort Results By</h4>
+                <Box className="dropdown-sort">
+                  <FormControl>
+                    <InputLabel className="sort-label" variant="standard" htmlFor="uncontrolled-native">Sort By</InputLabel>
+                    <NativeSelect
+                      defaultValue={selected}
+                      inputProps={{
+                        name: '',
+                        id: 'uncontrolled-native',
+                      }}
+                      onChange={(event) => setSelected(event.target.value)}
+                    >
+                      {optionList.map((item, index) => (
+                        <option key={index} value={item}>{item}</option>
+                      ))}
+                    </NativeSelect>
+                  </FormControl>
+                </Box>
+              </div>
+            </Collapse>          
+          </div>
+          {/* Filter */}
+          <div
+            className='dropdown-section'
+          >
+            <div className="dropdown-name-section" onClick={handleFilterClick}>
+              <div className="dropdown-name">
+                <h4>Filter</h4>
+                <span>{openFilter ? <ExpandMore /> : <ExpandLess />}</span>
+              </div>
+            </div>
+            <Collapse className="dropdown-collapse-section" in={openFilter} timeout="auto" unmountOnExit>
+              {/* Year */}
+              <div className="year-filter">
+                <div className="dropdown-div">
+                  <h4>Year Filter</h4>
+                  <Box className="dropdown-slider-filter">
+                    <p>
+                      From: 
+                      <span className="from-to-text"> {year[0]}</span> 
+                      &nbsp; - &nbsp;
+                      To: 
+                      <span className="from-to-text"> {year[1]}</span>
+                    </p>
+                    <div>
+                      <Slider
+                          className="filter-slider"
+                          getAriaLabel={() => 'Minimum distance'}
+                          value={year}
+                          onChange={handleYearChange}
+                          valueLabelDisplay="auto"
+                          getAriaValueText={valuetext}
+                          disableSwap
+                          min={1800}
+                          max={2200}
+                      />
+                    </div>
+                  </Box>
+                </div>
+              </div>
+              {/* IBM */}
+              <div className="ibm-score-filter">
+                <div className="dropdown-div">
+                  <h4>IBM Score Filter</h4>
+                  <Box className="dropdown-slider-filter">
+                    <p>
+                      From: 
+                      <span className="from-to-text"> {score[0]}</span> 
+                      &nbsp; - &nbsp;
+                      To: 
+                      <span className="from-to-text"> {score[1]}</span>
+                    </p>
+                    <div>
+                      <Slider
+                          className="filter-slider"
+                          getAriaLabel={() => 'Minimum distance'}
+                          value={score}
+                          onChange={handleScoreChange}
+                          valueLabelDisplay="auto"
+                          getAriaValueText={valuetext}
+                          disableSwap
+                          min={0}
+                          max={10}
+                      />
+                    </div>
+                  </Box>
+                </div>
+              </div>
+              {/* Genres */}
+              <div className="genres-filter">
+                <div className="dropdown-div">
+                  <h4>Genres Filter</h4>
+                  <ul className="dropdown-genres-filter">
+                    {genresData?.map((genre,index) => (
+                      <li className="genres-btn" key={index} onClick={() => setGenreId(genre.id)}>{genre.name}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </Collapse>          
+          </div>
+        </div>
         </Col>
         <Col lg={8} xs={12}>
           <Row>
-            {data?.results.map((movie, index) => 
-              <Col key={index} lg={4} xs={12}>
-                <MovieCard movie={movie}/>
+            {movies?.map((movie, index) => 
+              <Col key={index} lg={6} xs={12}>
+                <MoviePageCard movie={movie}/>
               </Col>
             )}
           </Row>
+
         </Col>
       </Row>
       <ReactPaginate
-        nextLabel="next >"
         onPageChange={handlePageClick}
-        pageRangeDisplayed={3}
-        marginPagesDisplayed={2}
+        forcePage={page-1} //내가 선택한 페이지
         pageCount={data.total_pages} //전체페이지
-        previousLabel="< previous"
+        previousLabel={page > 1 ? "<" : null}
+        nextLabel={page < data.total_pages? ">" : null}
         pageClassName="page-item"
         pageLinkClassName="page-link"
-        previousClassName="page-item"
-        previousLinkClassName="page-link"
-        nextClassName="page-item"
-        nextLinkClassName="page-link"
+        previousClassName={page > 1 ? "previous-page-item" : "previous-page-item-hidden"}
+        previousLinkClassName={page > 1 ? "previous-page-link" : "previous-page-link-hidden"}
+        nextClassName={page < data.total_pages? "next-page-item" : "next-page-item-hidden"}
+        nextLinkClassName={page < data.total_pages? "next-page-link" : "next-page-link-hidden"}
         breakLabel="..."
-        breakClassName="page-item"
+        breakClassName="page-item" 
         breakLinkClassName="page-link"
         containerClassName="pagination"
-        activeClassName="active"
+        activeClassName="active-page-item"
+        activeLinkClassName="active-page-link"
         renderOnZeroPageCount={null}
-        forcePage={page-1} //내가 선택한 페이지
+        pageRangeDisplayed={3}
+        marginPagesDisplayed={2}
       />
     </Container>
   )
