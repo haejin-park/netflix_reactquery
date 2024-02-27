@@ -2,7 +2,6 @@ import React from 'react';
 import { usePopularMoviesQuery } from '../../../../hooks/usePopularMovies';
 import { Alert, Spinner } from 'react-bootstrap';
 import MovieSlider from '../../../../common/MovieSlider/MovieSlider';
-import './PopularMovieSlider.style.css';
 import { responsive } from '../../../../constants/responsive';
 
 /*

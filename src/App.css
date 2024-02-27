@@ -2,3 +2,10 @@ body {
     background-color: black;
     height:100vh;
 }
+
+.loading-spinner, .error-alert {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}

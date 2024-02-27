@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useSearchMovieQuery } from '../../hooks/useSearchMovie';
+import { useSearchMoviesQuery } from '../../hooks/useSearchMovies';
 import { useSearchParams } from 'react-router-dom';
 import { Alert, Spinner, Container, Col, Row } from 'react-bootstrap';
 import MoviePageCard from '../../common/MoviePageCard/MoviePageCard';
@@ -35,7 +35,7 @@ const MoviePage = () => {
   const [genreId, setGenreId] = useState();
   const minDistance = 1;
   const keyword = query.get('q');
-  const {data, isLoading, isError, error} = useSearchMovieQuery({keyword, page, sortOption});
+  const {data, isLoading, isError, error} = useSearchMoviesQuery({keyword, page, sortOption});
   let results = data?.results;
   const [movies, setMovies] = useState([]);
   const {data:genresData} = useMovieGenreQuery();

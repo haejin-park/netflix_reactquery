@@ -2,7 +2,6 @@ import React from 'react';
 import { useUpcomingMoviesQuery } from '../../../../hooks/useUpcomingMovies';
 import { Alert, Spinner } from 'react-bootstrap';
 import MovieSlider from '../../../../common/MovieSlider/MovieSlider';
-import './UpcomingMovieSlider.style.css';
 import { responsive } from '../../../../constants/responsive';
 
 /*

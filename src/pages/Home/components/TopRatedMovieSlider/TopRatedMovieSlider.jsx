@@ -2,7 +2,6 @@ import React from 'react';
 import { useTopRatedMoviesQuery } from '../../../../hooks/useTopRatedMovies';
 import { Alert, Spinner } from 'react-bootstrap';
 import MovieSlider from '../../../../common/MovieSlider/MovieSlider';
-import './TopRatedMovieSlider.style.css';
 import { responsive } from '../../../../constants/responsive';
 
 /*
