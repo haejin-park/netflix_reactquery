@@ -14,7 +14,6 @@ const MovieDetailPage = () => {
   const params = useParams();
   const movieId = params.id;
   const {data, isLoading, isError, error} =  useMovieDetailQuery({movieId});
-  console.log('detail data', data);
   if(isLoading) {
     return (
       <div className="loading-spinner">
@@ -99,7 +98,7 @@ const MovieDetailPage = () => {
             </div>
           </Col>
         </Row>
-        <Row>
+        <Row className="movie-detail-reviews">
           <Col>
             <MovieReviews movieId={movieId}/>
           </Col>

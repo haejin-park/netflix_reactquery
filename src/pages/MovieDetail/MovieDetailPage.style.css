@@ -3,7 +3,7 @@
 }
 
 .movie-detail-info {
-    margin-bottom: 5%;
+    margin-bottom: 2%;
 }
 
 .movie-detail-poster-box {
@@ -71,7 +71,7 @@
     .movie-detail-poster-col {
         margin-bottom: 5%;
     }
-    
+
     .movie-detail-poster-box {
         display: flex;
         justify-content: center;

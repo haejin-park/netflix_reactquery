@@ -1,16 +1,3 @@
-.review-box {
-    margin-top: 2%;
-    padding: 2%;
-    width: 100%;
-    border: 2px solid red;
-    border-radius: 20px;
-} 
-
-.review-content {
-    overflow: hidden; 
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 4;
-
+.review-container {
+    padding: 1% 4%;
 }
