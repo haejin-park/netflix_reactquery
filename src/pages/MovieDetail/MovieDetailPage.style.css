@@ -12,13 +12,18 @@
 }
 
 .movie-detail-poster-box img {
-    height: 100%;
+    height: 680px;
+    object-fit: cover;
+    width: auto;
 }
 
 .movie-detail-badge-box {
     display: flex;
-    align-items: center;
     margin-bottom: 1%;
+}
+
+.movie-detail-badge-box-text {
+    padding-top:5px;
 }
 
 .movie-detail-badge {
@@ -40,7 +45,10 @@
 
 .movie-detail-info-icon-box {
     display: flex;
-    margin-bottom: 3%;
+}
+
+.movie-detail-poster-box img {
+    margin-bottom: 2%;
 }
 
 .movie-detail-info-icon-box div{

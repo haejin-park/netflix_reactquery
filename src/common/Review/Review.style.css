@@ -7,7 +7,7 @@
 } 
 
 .review-content {
-    overflow: hidden;
+    overflow: auto;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-box-orient: vertical;

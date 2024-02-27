@@ -4,10 +4,11 @@ import { useSearchParams } from 'react-router-dom';
 import { Alert, Spinner, Container, Col, Row } from 'react-bootstrap';
 import MoviePageCard from '../../common/MoviePageCard/MoviePageCard';
 import {FormControl, InputLabel, NativeSelect, Box,  Collapse, Slider} from '@mui/material';
-import './MoviePage.style.css';
-import ReactPaginate from 'react-paginate';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import { useMovieGenreQuery } from '../../hooks/useMovieGenre';
+import Pagination from '../../common/Pagination/Pagination';
+import './MoviePage.style.css';
+
 /*
   경로 2가지
   navbar에서 클릭해서 온 경우 => popularMovie보여주기
@@ -28,7 +29,7 @@ const MoviePage = () => {
   const [openFilter, setOpenFilter] = useState(true);
   const optionList = ['None', 'Popularity(Desc)', 'Popularity(Asc)', 'Release Day(Desc)', 
   'Release Day(Asc)', 'Vote(Desc)', 'Vote(Asc)', 'Revenue(Desc)', 'Revenue(Asc)'];
-  const [selected, setSelected] = useState("");
+  const [selectedOption, setSelectedOption] = useState("");
   const [sortOption, setSortOption] = useState("");
   const [year, setYear] = useState([1800, 2200]);
   const [score, setScore] = useState([0, 10]);
@@ -42,8 +43,8 @@ const MoviePage = () => {
 
   useEffect(() => {
 
-    if(selected){
-      switch(selected) {
+    if(selectedOption){
+      switch(selectedOption) {
         case 'None': 
           setSortOption('');
           break;
@@ -54,10 +55,10 @@ const MoviePage = () => {
           setSortOption('popularity.asc');
           break;
         case 'Release Day(Desc)': 
-        setSortOption('primary_release_date.desc');
+          setSortOption('primary_release_date.desc');
           break;
         case 'Release Day(Asc)': 
-        setSortOption('primary_release_date.asc');
+          setSortOption('primary_release_date.asc');
           break;
         case 'Vote(Desc)': 
           setSortOption('vote_average.desc');
@@ -99,7 +100,7 @@ const MoviePage = () => {
   /* 상태가 비동기적으로 업데이트 되므로 movies가 업데이트 되는 시점은 useEffect이후이기 때문에 모든 필터링 결과를 반영할 수 있도록 상태를 한번에 업데이트  */
     setMovies(results)
 
-  }, [selected, score, year, genreId, data?.results]);
+  }, [selectedOption, score, year, genreId, data?.results]);
 
   if(isLoading) {
     return (
@@ -121,7 +122,7 @@ const MoviePage = () => {
     )
   };
 
-  const handlePageClick = ({selected}) => {
+const handlePageClick = ({selected}) => {
     setPage(selected+1);
   };
 
@@ -183,12 +184,12 @@ const handleScoreChange = (event, newValue, activeThumb) => {
                   <FormControl>
                     <InputLabel className="sort-label" variant="standard" htmlFor="uncontrolled-native">Sort By</InputLabel>
                     <NativeSelect
-                      defaultValue={selected}
+                      defaultValue={selectedOption}
                       inputProps={{
                         name: '',
                         id: 'uncontrolled-native',
                       }}
-                      onChange={(event) => setSelected(event.target.value)}
+                      onChange={(event) => setSelectedOption(event.target.value)}
                     >
                       {optionList.map((item, index) => (
                         <option key={index} value={item}>{item}</option>
@@ -292,28 +293,7 @@ const handleScoreChange = (event, newValue, activeThumb) => {
 
         </Col>
       </Row>
-      <ReactPaginate
-        onPageChange={handlePageClick}
-        forcePage={page-1} //내가 선택한 페이지
-        pageCount={data.total_pages} //전체페이지
-        previousLabel={page > 1 ? "<" : null}
-        nextLabel={page < data.total_pages? ">" : null}
-        pageClassName="page-item"
-        pageLinkClassName="page-link"
-        previousClassName={page > 1 ? "previous-page-item" : "previous-page-item-hidden"}
-        previousLinkClassName={page > 1 ? "previous-page-link" : "previous-page-link-hidden"}
-        nextClassName={page < data.total_pages? "next-page-item" : "next-page-item-hidden"}
-        nextLinkClassName={page < data.total_pages? "next-page-link" : "next-page-link-hidden"}
-        breakLabel="..."
-        breakClassName="page-item" 
-        breakLinkClassName="page-link"
-        containerClassName="pagination"
-        activeClassName="active-page-item"
-        activeLinkClassName="active-page-link"
-        renderOnZeroPageCount={null}
-        pageRangeDisplayed={3}
-        marginPagesDisplayed={2}
-      />
+      <Pagination data={data} handlePageClick={handlePageClick} page={page}/>
     </Container>
   )
 

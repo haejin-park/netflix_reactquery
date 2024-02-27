@@ -71,27 +71,26 @@ const MovieDetailPage = () => {
             </div>
             <div className="movie-detail-overview">{data?.overview}</div>
             <div className="movie-detail-etc-info">
-            {/* 숫자 글자 갯수가 3개 이상이면 ,찍어라 */}
               <div className="movie-detail-badge-box">
                 <div className='movie-detail-badge'>Budget</div>
-                <p className="budget">${data?.budget}</p>
+                <div className="movie-detail-badge-box-text">${data?.budget.toLocaleString()}</div>
               </div>
               <div className="movie-detail-badge-box">
                 <div className='movie-detail-badge'>Revenue</div>
-                <p className="revenue">${data?.revenue}</p>
+                <div className="movie-detail-badge-box-text">${data?.revenue.toLocaleString()}</div>
               </div>
               <div className="movie-detail-badge-box">
                 <div className='movie-detail-badge'>Release Date</div>
-                <p className="release-date">{data?.release_date}</p>
+                <div className="movie-detail-badge-box-text">{data?.release_date}</div>
               </div>
               <div className="movie-detail-badge-box">
                 <div className='movie-detail-badge'>Runtime</div>
-                <p className="runtime">{data?.runtime}분</p>
+                <div className="movie-detail-badge-box-text">{data?.runtime}분</div>
               </div>
             </div>
           </Col>
         </Row>
-        <Row>
+        <Row className="movie-detail-recommend">
           <Col>
             <div>
               <RecommendMovieSlider movieId={movieId}/>
