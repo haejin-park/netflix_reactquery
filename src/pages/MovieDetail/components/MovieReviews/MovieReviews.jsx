@@ -35,8 +35,8 @@ const MovieReviews = ({movieId}) => {
   return (
     <div className="review-container">
         <h2>Reviews</h2>
-        {data?.results?.map((review) => (
-            <Review key={review.id} review={review}/>
+        {data?.results?.map((review, index) => (
+            <Review key={review.id} review={review} index={index}/>
         ))}
         <Pagination data={data} handlePageClick={handlePageClick} page={page}/>
 

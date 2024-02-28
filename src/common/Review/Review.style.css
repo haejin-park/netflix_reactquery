@@ -4,16 +4,61 @@
     width: 100%;
     border: 2px solid red;
     border-radius: 20px;
+    display: flex;
+
 } 
 
-.review-content {
-    overflow: auto;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 4;
+.review-text-box {
+    padding: 2%;
+    width: 95%;
 }
 
-.review-content.open {
-    -webkit-line-clamp: unset;
+.review-content {
+    padding: 3px 0px;
 }
+
+.open {
+    height: 300px;
+    overflow: scroll;
+}
+
+.close {
+    overflow: hidden;
+    height: 50px;
+    display: -webkit-box;
+    /* 수직으로 쌓이도록하고 */
+    -webkit-box-orient: vertical;
+    /* 텍스트 최대 2줄까지만 표시하고 나머지 내용은 안보이게 */
+    -webkit-line-clamp: 2;
+}
+
+.review-btn-box {
+    margin-left: 1%;
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.review-btn {
+    font-size: 13px;
+    max-width: 40px;
+    height: 40px;
+    font-weight: 800;
+    text-align: center !important;
+    background-color: red;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border: none;
+}
+
+
+.review-btn:hover {
+    background-color: rgb(227, 0, 0) !important;
+}
+
+@media (min-width)

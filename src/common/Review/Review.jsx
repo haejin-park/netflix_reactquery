@@ -1,23 +1,40 @@
-import React, { useState } from 'react';
-import { ListItemButton } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 import './Review.style.css';
 
-const Review = ({ review }) => {
+const Review = ({ review, index }) => {
     const [open, setOpen] = useState(false);
-
+    const [updatedContent, setUpdatedContent] = useState('');
+    console.log('updatedContent', updatedContent);
+    console.log('review', review);
+    console.log('review.length', review.length);
     const handleClick = () => {
         setOpen(!open);
     };
 
+    const truncateContent = (str, num) => {
+        if(review.content.length <= num) 
+        return setUpdatedContent(review.content);
+        setUpdatedContent(review.content.slice(0, num));
+    }
+
+    useEffect(() => {
+        truncateContent(review.content, 300);
+    }, [updatedContent]);
+
     return (
         <div className="review-box">
-            <h5>{review.author}</h5>
-            <div className={`review-content ${open ? 'open' : ''}`} id={`review-content`}>
-                {review.content}
+            <div className="review-text-box">
+                <h5>{review.author}</h5>
+                <div className="review-content-box">
+                    {open 
+                    ? <div className={`review-content ${open? 'open' : 'close' }`}>{review.content}</div>
+                    : <div className={`review-content ${open? 'open' : 'close' }`}>{updatedContent}</div>
+                    }
+                </div>
             </div>
-            <ListItemButton onClick={handleClick}>
-                {open ? '접기' : '더보기'}
-            </ListItemButton>            
+            <div className="review-btn-box">
+                {review.content.length > 300 &&  <button className ="review-btn" onClick={handleClick}>{open ? 'close' : 'open'}</button>}
+            </div>
         </div>
     );
 };
