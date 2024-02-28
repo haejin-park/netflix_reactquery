@@ -34,8 +34,10 @@ const Banner = ({movieDetailData}) => {
       className="banner" 
     >
       <div className="banner-info">
-        {movieDetailData?.title ? <h1>{movieDetailData?.title}</h1> : <h1>{data?.results[0].title}</h1>}
-        {movieDetailData?.overview ? <p>{movieDetailData?.overview}</p> : <p>{data?.results[0].overview}</p>}
+        <div className ="banner-info-text">
+        {movieDetailData?.title ? <h1 className="banner-info-movie-title">{movieDetailData?.title}</h1> : <h1>{data?.results[0].title}</h1>}
+        {movieDetailData?.overview ? <p className="banner-info-movie-overview">{movieDetailData?.overview}</p> : <p>{data?.results[0].overview}</p>}
+        </div>
         {movieDetailData && 
           <>
             <Button className="play-btn" onClick={handleShow} size="lg">Play</Button>

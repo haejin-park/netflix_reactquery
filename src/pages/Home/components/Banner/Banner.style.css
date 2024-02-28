@@ -21,6 +21,25 @@
     flex-direction: column;
     justify-content: center;
     padding: 2rem;
+    overflow: hidden;
+}
+
+.banner-info-text {
+    margin-bottom: 10px;
+}
+
+.banner-info-movie-title {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.banner-info-movie-overview {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp:6
 }
 
 .banner-info > * {
