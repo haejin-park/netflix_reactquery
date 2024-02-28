@@ -1,14 +1,15 @@
 import { useQuery } from "@tanstack/react-query"
 import api from "../utils/api"
 
-const fetchMovieReviews = ({movieId}) => {
-   return api.get(`/movie/${movieId}/reviews`);
+const fetchMovieVideo = ({movieId}) => {
+   return api.get(`/movie/${movieId}/videos`);
 }
-export const useMovieReviewsQuery = ({movieId}) => {
+export const useMovieVideoQuery = ({movieId}) => {
     return useQuery({
         queryKey: ['movie-reviews', movieId],
-        queryFn: () => fetchMovieReviews({movieId}),
+        queryFn: () => fetchMovieVideo({movieId}),
         select: (data) => data.data,
     });
 }
+
 

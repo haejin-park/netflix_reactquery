@@ -10,5 +10,5 @@ export const useUpcomingMoviesQuery = () => {
         queryKey:['movie-upcoming'],
         queryFn: fetchUpcomingMovies,
         select: (data) => data.data,
-    })
+    });
 }

@@ -1,0 +1,24 @@
+.video-modal-header {
+    background-color: black;
+}
+
+.close-btn {
+    position: absolute;
+    right: 13px;
+    float: right;
+}
+
+.video-modal-body {
+    padding: 0 !important;
+}
+
+.youtube-iframe {
+    width:100% !important;   
+    height: 100% !important;   
+}
+
+.youtube-video {
+    width:100% !important;   
+    height: 100% !important;   
+}
+

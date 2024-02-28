@@ -5,9 +5,7 @@ import 'react-multi-carousel/lib/styles.css';
 import MovieCard from '../MovieCard/MovieCard';
 
 const MovieSlider = ({movieListTitle, movies, responsive}) => {
-
   let [deviceType, setDeviceType] = useState("");
-
   useEffect(() => {
     const checkDeviceType = () => {
       if(window.innerWidth >=993) {
@@ -33,7 +31,7 @@ const MovieSlider = ({movieListTitle, movies, responsive}) => {
           itemClass="carousel-item-padding-40-px"
           containerClass="carousel-container"
           responsive={responsive} //기기별 몇개 보여줄건지
-          // autoPlay={deviceType !== "mobile" ? true : false}
+          autoPlay={deviceType !== "mobile" ? true : false}
           transitionDuration={500}
           deviceType={deviceType}
         >

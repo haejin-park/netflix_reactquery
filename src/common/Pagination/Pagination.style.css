@@ -25,18 +25,21 @@
 
 /* 기본 page 색상 */
 .page-item, .page-link {
-    background: linear-gradient(45deg,rgb(229, 210, 136),rgb(255, 0, 0), black);
+    /* background: linear-gradient(45deg,black, rgb(255, 0, 0),rgb(255, 169, 32)); */
+    background: linear-gradient(45deg,red, rgb(255, 140, 0),white);
+
 }
 
 /* previos, next page 색상 */
 .previous-page-item, .previous-page-link, .next-page-item, .next-page-link { 
-    background: linear-gradient(45deg,rgb(255, 140, 0),white);
+    background: linear-gradient(45deg,black, rgb(255, 0, 0),rgb(255, 169, 32));
+
     padding: 5px;
 }
 
 /* active page 색상*/
 .active-page-link, active-page-item { 
-    background: linear-gradient(45deg,rgb(255, 140, 0),white);
+    background: linear-gradient(45deg,black, rgb(255, 0, 0),rgb(255, 169, 32));
 }
 
 /* 페이지 클릭시 포커스 되었을 때 주위에 파란 빛 안나오게  */

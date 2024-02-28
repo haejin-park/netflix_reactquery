@@ -1,8 +1,9 @@
 import React from 'react'
 import MovieSlider from '../../../../common/MovieSlider/MovieSlider'
-import useMovieRecommendQuery from '../../../../hooks/useMovieRecommand';
+
 import { Alert, Spinner } from 'react-bootstrap';
 import { responsive } from '../../../../constants/responsive';
+import { useMovieRecommendQuery } from '../../../../hooks/useMovieRecommend';
 
 const RecommendMovieSlider = ({movieId}) => {
     const {data, isLoading, isError, error} = useMovieRecommendQuery({movieId});

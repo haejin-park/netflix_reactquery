@@ -10,5 +10,5 @@ export const useTopRatedMoviesQuery = () => {
         queryKey:['movie-top-rated'],
         queryFn: fetchTopRatedMovies,
         select: (data) => data.data,
-    })
+    });
 }

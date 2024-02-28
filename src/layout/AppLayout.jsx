@@ -16,7 +16,7 @@ const AppLayout = () => {
     <div>
       <Navbar expand="lg" className="navbar">
         <Container fluid>
-          <Navbar.Brand className="brand" href="#">
+          <Navbar.Brand className="brand" onClick={() => navigate('/')}>
             <img width="93" src={logo} alt="logo" />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
@@ -26,8 +26,8 @@ const AppLayout = () => {
               style={{ maxHeight: '100px' }}
               navbarScroll
             >
-              <Nav.Link className="link" href="/">Home</Nav.Link>
-              <Nav.Link className="link" href="/movies">Movies</Nav.Link>
+              <Nav.Link className="link" onClick={() => navigate('/')}>Home</Nav.Link>
+              <Nav.Link className="link" onClick={() => navigate('/movies')}>Movies</Nav.Link>
             </Nav>
             <Form className="d-flex input-form" onSubmit={searchByKeyword}>
               <Form.Control
