@@ -3,14 +3,24 @@ import { usePopularMoviesQuery } from '../../../../hooks/usePopularMovies'
 import MovieVideoModal from '../../../../common/MovieVideoModal/MovieVideoModal';
 import { Button } from 'react-bootstrap';
 import "./Banner.style.css";
+import { useNavigate } from 'react-router-dom';
 
 const Banner = ({movieDetailData}) => {
+  const navigate = useNavigate();
   const [fullscreen, setFullscreen] = useState(true);
   const [show, setShow] = useState(false);
   const {data} = usePopularMoviesQuery();
   function handleShow() {
     setFullscreen(true);
     setShow(true);
+  }
+
+  const goToMovieDetail = () => {
+    if(movieDetailData) {
+      navigate(`/movies/${movieDetailData.id}`)
+    } else {
+      navigate(`/movies/${data?.results[0].id}`)
+    }
   }
 
   return (
@@ -32,6 +42,7 @@ const Banner = ({movieDetailData}) => {
         }
     }
       className="banner" 
+      onClick={goToMovieDetail}
     >
       <div className="banner-info">
         <div className ="banner-info-text">
