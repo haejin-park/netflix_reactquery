@@ -18,38 +18,37 @@ const MovieCard = ({movie}) => {
     return genreNameList;
   }
 
-  const goToMovieDetail = (movieId) => {
-    console.log('movieId', movieId);
-    navigate(`/movies/${movieId}`)
+  const goToMovieDetail = () => {
+    console.log('movieId', movie.id);
+    navigate(`/movies/${movie.id}`)
   }
 
   return (
     <div
-    onClick={() => goToMovieDetail(movie.id)}
-  
+    onClick={goToMovieDetail}
     style={{
       backgroundImage:
       movie.poster_path && 
       "url("+
-      `https://media.themoviedb.org/t/p/w533_and_h300_bestv2${movie.poster_path}`+
+      `https://media.themoviedb.org/t/p/w533_and_h300_bestv2${movie?.poster_path}`+
       ")"
     }}
     className='movie-card-image'
     > 
       <div className='overlay'>
         <div className='movie-info'>
-          <h2 className='movie-title'>{movie.title}</h2>
+          <h2 className='movie-title'>{movie?.title}</h2>
           <div>
-            {showGenre(movie.genre_ids).map((genreName, index) => 
+            {showGenre(movie?.genre_ids).map((genreName, index) => 
               <Badge key={index} bg="danger" className="me-1">
                 {genreName}
               </Badge>
             )}
           </div>
-          <div><FontAwesomeIcon className="average" icon={faStar} />&nbsp;{movie.vote_average}</div>
-          <div><FontAwesomeIcon className="popularity" icon={faUsersRectangle} />&nbsp;{movie.popularity}</div>
+          <div><FontAwesomeIcon className="average" icon={faStar} />&nbsp;{movie?.vote_average}</div>
+          <div><FontAwesomeIcon className="popularity" icon={faUsersRectangle} />&nbsp;{movie?.popularity}</div>
           <div>
-            {movie.adult? 
+            {movie?.adult? 
               <h4 className='audult' style={{color: "red"}}>over 18</h4>
             : <h4 className='audult' style={{color: "green"}}>under 18</h4> 
             }

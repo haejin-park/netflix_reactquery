@@ -29,15 +29,15 @@ const Banner = ({movieDetailData}) => {
         backgroundImage:
         movieDetailData.backdrop_path &&
           "url(" +
-          `https://media.themoviedb.org/t/p/w533_and_h300_bestv2${movieDetailData.backdrop_path}` +
+          `https://media.themoviedb.org/t/p/w1066_and_h600_bestv2${movieDetailData.backdrop_path}` +
           ")",
         }
         :
         {
         backgroundImage:
-        data?.results[0].poster_path &&
+        data?.results[0].backdrop_path &&
           "url(" +
-          `https://media.themoviedb.org/t/p/w533_and_h300_bestv2${data?.results[0].poster_path}` +
+          `https://media.themoviedb.org/t/p/w533_and_h300_bestv2${data?.results[0].backdrop_path}` +
           ")",
         }
     }
@@ -45,9 +45,9 @@ const Banner = ({movieDetailData}) => {
       onClick={goToMovieDetail}
     >
       <div className="banner-info">
-        <div className ="banner-info-text">
-        {movieDetailData?.title ? <h1 className="banner-info-movie-title">{movieDetailData?.title}</h1> : <h1>{data?.results[0].title}</h1>}
-        {movieDetailData?.overview ? <p className="banner-info-movie-overview">{movieDetailData?.overview}</p> : <p>{data?.results[0].overview}</p>}
+        <div className ="banner-info-text-box">
+        {movieDetailData?.title ? <h1 className="banner-info-movie-title">{movieDetailData?.title}</h1> : <h1 className="banner-info-movie-title">{data?.results[0].title}</h1>}
+        {movieDetailData?.overview ? <p className="banner-info-movie-overview">{movieDetailData?.overview}</p> : <p className="banner-info-movie-overview">{data?.results[0].overview}</p>}
         </div>
         {movieDetailData && 
           <>

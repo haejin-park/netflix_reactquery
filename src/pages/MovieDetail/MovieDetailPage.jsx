@@ -63,7 +63,7 @@ const MovieDetailPage = () => {
               <div><FontAwesomeIcon className="average" icon={faStar} />&nbsp;{data?.vote_average}</div>
               <div><FontAwesomeIcon className="popularity" icon={faUsersRectangle} />&nbsp;{data?.popularity}</div>
               <div>
-                {data.adult? 
+                {data?.adult? 
                   <h4 className='audult' style={{color: "red"}}>over 18</h4>
                 : <h4 className='audult' style={{color: "green"}}>under 18</h4> 
                 }

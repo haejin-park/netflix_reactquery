@@ -9,6 +9,7 @@ import '@fontsource/roboto/400.css';
 import { ThemeProvider, createTheme } from '@mui/material';
 import './App.css';
 import './layout/AppLayout.style.css';
+import ScrollToTop from './common/ScrollToTop/ScrollToTop';
 
 
 //홈페이지 /
@@ -27,15 +28,16 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
+      <ScrollToTop />
       <Routes>
-      <Route path="/" element={<AppLayout/>}>
-        <Route index element={<HomePage/>}/>
-        <Route path="movies">
-          <Route index element={<MoviePage/>}/>
-          <Route path=":id" element={<MovieDetailPage/>}/>
+        <Route path="/" element={<AppLayout/>}>
+          <Route index element={<HomePage/>}/>
+          <Route path="movies">
+            <Route index element={<MoviePage/>}/>
+            <Route path=":id" element={<MovieDetailPage/>}/>
+          </Route>
         </Route>
-      </Route>
-      <Route path="*" element={<NotFoundPage/>}/>
+        <Route path="*" element={<NotFoundPage/>}/>
       </Routes>
     </ThemeProvider>
     
