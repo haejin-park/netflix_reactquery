@@ -4,10 +4,6 @@ import { Alert, Spinner } from 'react-bootstrap';
 import MovieSlider from '../../../../common/MovieSlider/MovieSlider';
 import { responsive } from '../../../../constants/responsive';
 
-/*
-영화 들고오기
-캐루셀 적용하기
-*/
 const PopularMovieSlider = () => {
     const {isLoading, isError, error, data} = usePopularMoviesQuery();
 

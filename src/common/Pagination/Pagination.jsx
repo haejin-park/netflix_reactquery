@@ -8,8 +8,8 @@ const Pagination = ({data, handlePageClick, page}) => {
     <div>
       <ReactPaginate
         onPageChange={handlePageClick}
-        forcePage={page-1} //내가 선택한 페이지
-        pageCount={data?.total_pages} //전체페이지
+        forcePage={page-1}
+        pageCount={data?.total_pages}
         previousLabel={page > 1 ? "<" : null}
         nextLabel={page < data?.total_pages? ">" : null}
         pageClassName="page-item"

@@ -30,7 +30,7 @@ const MovieSlider = ({movieListTitle, movies, responsive}) => {
           infinite={true} 
           itemClass="carousel-item-padding-40-px"
           containerClass="carousel-container"
-          responsive={responsive} //기기별 몇개 보여줄건지
+          responsive={responsive} 
           autoPlay={deviceType !== "mobile" ? true : false}
           transitionDuration={500}
           deviceType={deviceType}

@@ -1,16 +1,13 @@
 .background{   
-    /*배경이미지 정렬*/
     display: flex; 
     justify-content: center;
     flex-direction: column;
-    /*화면 작아졌을 때 세로 선상 위치를 잡을 수 있도록 높이 설정*/
     height:100vh;
 }
 
 .background-img{
     background-size: cover;
     height: auto;
-    /* 사진이 글씨 아래에 오도록 명시적으로 보여주고 사진 배치를 바닥에서 5% 위로 올림*/
     position: relative;
     z-index: 1;
     bottom: 5%;
@@ -19,25 +16,22 @@
 .title {
     color: white;
     font-size: 80px;
-    /* 글씨가 사진 위에 오도록 명시적으로 설정(z-index는 스택 컨텍스트 내에서 요소의 위치를 결정하며, 보통 position이 있어야 z-inde 사용할 수 있는데, flex나 gird 컨테이너 자식요소는 자체적인 스택 컨텍스트를 생성하기 떄문에 position없어도 z-index쓸 수 있음) */
     z-index: 2;
-    /* 가운데 정렬 */
     text-align: center;
-    /* 수평, 수직 정렬 */
     transform: translate(0%, 62%);
 }
 
 @media (min-width:769px) and (max-width: 991px) {
     .title {
         font-size: 60px;
-        transform: translate(0%, 50%); /* 수직 및 수평 가운데 정렬 */
+        transform: translate(0%, 50%);
     }
 }
 
 @media (max-width: 768px) {
     .title {
         font-size: 50px;
-        transform: translate(0%, 40%); /* 수직 및 수평 가운데 정렬 */
+        transform: translate(0%, 40%);
     }
 }
 

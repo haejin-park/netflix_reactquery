@@ -9,21 +9,8 @@ import { useMovieGenreQuery } from '../../hooks/useMovieGenre';
 import Pagination from '../../common/Pagination/Pagination';
 import './MoviePage.style.css';
 
-/*
-  경로 2가지
-  navbar에서 클릭해서 온 경우 => popularMovie보여주기
-  keyword를 입력해서 온 경우 => 키워드와 관련된 영화 보여주기
- (원래는 백엔드에서 해야할 작업들)
-
-  페이지네이션 
-  1 페이지네이션 설치
-  2 page state만들기
-  3 페이지네이션 클릭할 때 마다 page바꿔주기
-  4 page값이 바뀔 때 마다 userSearchMovie에 page까지 넣어서 fetch
-*/
-
 const MoviePage = () => {
-  const [query, setQuery] = useSearchParams();
+  const [query] = useSearchParams();
   const [page, setPage] = useState(1);
   const [openSort, setOpenSort] = useState(true);
   const [openFilter, setOpenFilter] = useState(true);
@@ -97,7 +84,6 @@ const MoviePage = () => {
       });
     }
 
-  /* 상태가 비동기적으로 업데이트 되므로 movies가 업데이트 되는 시점은 useEffect이후이기 때문에 모든 필터링 결과를 반영할 수 있도록 상태를 한번에 업데이트  */
     setMovies(results)
 
   }, [selectedOption, score, year, genreId, data?.results]);

@@ -4,9 +4,6 @@ import './Review.style.css';
 const Review = ({ review, index }) => {
     const [open, setOpen] = useState(false);
     const [updatedContent, setUpdatedContent] = useState('');
-    console.log('updatedContent', updatedContent);
-    console.log('review', review);
-    console.log('review.length', review.length);
     const handleClick = () => {
         setOpen(!open);
     };

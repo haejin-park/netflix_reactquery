@@ -19,7 +19,6 @@ const MovieCard = ({movie}) => {
   }
 
   const goToMovieDetail = () => {
-    console.log('movieId', movie.id);
     navigate(`/movies/${movie.id}`)
   }
 

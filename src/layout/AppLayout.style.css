@@ -3,7 +3,6 @@
     background-color: black;
 }
 
-/* 부트스트랩 토글 메뉴 선 색상 변경 (stroke='rgba(255, 255, 255, 1)' 부분이 선의 색상을 결정) */
 .navbar-toggler-icon {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
   }
@@ -24,7 +23,7 @@
 
 .search-input::placeholder {
     color: white;
-    opacity: 1; /* Firefox에서의 색상 변경을 위해 필요 */
+    opacity: 1; 
 }
 
 .search-icon-box {

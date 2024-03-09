@@ -6,7 +6,6 @@ import Pagination from '../../../../common/Pagination/Pagination';
 import { useMovieReviewsQuery } from '../../../../hooks/useMovieReviews';
 import { Alert, Spinner } from 'react-bootstrap';
 
-
 const MovieReviews = ({movieId}) => {
   const {data, isLoading, isError, error} = useMovieReviewsQuery({movieId});
   const [page, setPage] = useState(1);

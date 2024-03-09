@@ -42,11 +42,11 @@ const MovieVideoModal = ({movieId, show, setShow, fullscreen}) => {
         </Modal.Header>
         <Modal.Body className="video-modal-body">
           <YouTube
-            videoId={data?.results[1]?.key}          
-            className='youtube-video'           // 영상을 둘러싼 박스
-            iframeClassName='youtube-iframe'    // 영상
-            opts={opts}                         // 자동 재생 1회
-            onEnd={() => setShow(false)}        // 영상이 끝나면 바로 모달이 닫히게
+            videoId={data?.results[1]?.key}
+            className='youtube-video'     
+            iframeClassName='youtube-iframe'
+            opts={opts}   
+            onEnd={() => setShow(false)}
           />
         </Modal.Body>
       </Modal>

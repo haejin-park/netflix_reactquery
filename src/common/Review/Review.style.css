@@ -26,9 +26,7 @@
     overflow: hidden;
     height: 50px;
     display: -webkit-box;
-    /* 수직으로 쌓이도록하고 */
     -webkit-box-orient: vertical;
-    /* 텍스트 최대 2줄까지만 표시하고 나머지 내용은 안보이게 */
     -webkit-line-clamp: 2;
 }
 

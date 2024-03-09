@@ -8,7 +8,6 @@ const AppLayout = () => {
   const navigate = useNavigate();
   const searchByKeyword = (event) => {
     event.preventDefault();
-    //url바꿔주기
     navigate(`/movies?q=${keyword}`);
     setKeyword('');
   };
